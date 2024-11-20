@@ -1,35 +1,41 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import CursorEffect from './components/Cursor/Cursor';
 
-function App() {
-  const [count, setCount] = useState(0)
+import videoBackground from "./assets/images/background.mp4";
+import Button from './components/Button/Button';
+import CountdownTimer from './components/CountdownTimer/CountdownTimer';
+import InfoPage from './pages/Info/InfoPage'; // Create this new page
 
+const App = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/info" element={<InfoPage />} />
+      </Routes>
+    </Router>
+  );
+};
 
-export default App
+const Home = () => (
+  <>
+    <div className="background-container">
+      <video autoPlay loop muted className="video-background">
+        <source src={videoBackground} type="video/mp4" />
+      </video>
+
+      <img src="/glow-top.png" alt="glow" className="Glow top-glow" />
+      <div className="content">
+        <CountdownTimer />
+        <Button>
+          <a href="/info" style={{ color: 'inherit', textDecoration: 'none' }}>You're Invited</a>
+        </Button>
+      </div>
+      <img src="/glow-bottom.png" alt="glow" className="Glow bottom-glow" />
+    </div>
+    <CursorEffect />
+  </>
+);
+
+export default App;

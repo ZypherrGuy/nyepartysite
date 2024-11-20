@@ -1,0 +1,46 @@
+/* PageTransition.css */
+
+/* Defining neon transition effect for both incoming and outgoing */
+@keyframes neonTransitionIn {
+  0% {
+    transform: scale(0.8);
+    opacity: 0;
+    filter: brightness(1.5) blur(5px);
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 1;
+    filter: brightness(1.2) blur(0);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+    filter: brightness(1) blur(0);
+  }
+}
+
+@keyframes neonTransitionOut {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: brightness(1) blur(0);
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0;
+    filter: brightness(1.5) blur(5px);
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0;
+    filter: brightness(1.5) blur(10px);
+  }
+}
+
+.page-transition {
+  animation: neonTransitionIn 1s ease-in-out forwards;
+}
+
+.page-transition-exit {
+  animation: neonTransitionOut 1s ease-in-out forwards;
+}
